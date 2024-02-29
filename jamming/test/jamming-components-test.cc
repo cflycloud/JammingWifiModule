@@ -31,7 +31,7 @@
 #include "ns3/address.h"
 // wifi
 #include "ns3/nsl-wifi-helper.h"
-#include "ns3/nqos-wifi-mac-helper.h"
+#include "ns3/wifi-mac-helper.h"
 // mobility
 #include "ns3/mobility-helper.h"
 #include "ns3/constant-position-mobility-model.h"
@@ -179,7 +179,7 @@ JammerTypeTest::InstallJammer (std::string jammerType)
   NslWifiChannelHelper wifiChannel ;
   wifiChannel.SetPropagationDelay ("ns3::ConstantSpeedPropagationDelayModel");
   wifiPhy.SetChannel (wifiChannel.Create ());
-  NqosWifiMacHelper wifiMac = NqosWifiMacHelper::Default ();
+  WifiMacHelper wifiMac = WifiMacHelper::Default ();
   wifi.SetRemoteStationManager ("ns3::ConstantRateWifiManager",
                                 "DataMode", StringValue(phyMode),
                                 "ControlMode", StringValue(phyMode));
@@ -302,7 +302,7 @@ JammingMitigationTypeTest::InstallMitigation (std::string mitigationType)
   NslWifiChannelHelper wifiChannel ;
   wifiChannel.SetPropagationDelay ("ns3::ConstantSpeedPropagationDelayModel");
   wifiPhy.SetChannel (wifiChannel.Create ());
-  NqosWifiMacHelper wifiMac = NqosWifiMacHelper::Default ();
+  WifiMacHelper wifiMac;
   wifi.SetRemoteStationManager ("ns3::ConstantRateWifiManager",
                                 "DataMode", StringValue(phyMode),
                                 "ControlMode", StringValue(phyMode));
@@ -534,19 +534,19 @@ WirelessModuleUtilityTest::SimulateTwoNodes (double distance)
   WifiHelper wifi;
   wifi.SetStandard (WIFI_PHY_STANDARD_80211b);
   NslWifiPhyHelper wifiPhy =  NslWifiPhyHelper::Default ();
-  wifiPhy.Set ("NslRxGain", DoubleValue (m_rxGainDbm));
-  wifiPhy.Set ("NslTxGain", DoubleValue (m_txGainDbm));
-  wifiPhy.Set ("NslTxPowerLevels", UintegerValue (1));
-  wifiPhy.Set ("NslTxPowerEnd", DoubleValue (m_txPowerDbm));
-  wifiPhy.Set ("NslTxPowerStart", DoubleValue (m_txPowerDbm));
-  wifiPhy.Set ("NslCcaMode1Threshold", DoubleValue (0.0));
+  wifiPhy.Set ("RxGain", DoubleValue (m_rxGainDbm));
+  wifiPhy.Set ("TxGain", DoubleValue (m_txGainDbm));
+  wifiPhy.Set ("TxPowerLevels", UintegerValue (1));
+  wifiPhy.Set ("TxPowerEnd", DoubleValue (m_txPowerDbm));
+  wifiPhy.Set ("TxPowerStart", DoubleValue (m_txPowerDbm));
+  wifiPhy.Set ("CcaEdThreshold", DoubleValue (0.0));
   wifiPhy.SetPcapDataLinkType (NslWifiPhyHelper::DLT_IEEE802_11_RADIO);
 
   NslWifiChannelHelper wifiChannel ;
   wifiChannel.SetPropagationDelay ("ns3::ConstantSpeedPropagationDelayModel");
   wifiChannel.AddPropagationLoss ("ns3::FriisPropagationLossModel");
   wifiPhy.SetChannel (wifiChannel.Create ());
-  NqosWifiMacHelper wifiMac = NqosWifiMacHelper::Default ();
+  WifiMacHelper wifiMac;
   wifi.SetRemoteStationManager ("ns3::ConstantRateWifiManager",
                                 "DataMode", StringValue(phyMode),
                                 "ControlMode", StringValue(phyMode));

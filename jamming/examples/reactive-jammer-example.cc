@@ -29,9 +29,7 @@
 
 #include "ns3/core-module.h"
 #include "ns3/network-module.h"
-#include "ns3/helper-module.h"
 #include "ns3/mobility-module.h"
-#include "ns3/contrib-module.h"
 #include "ns3/wifi-module.h"
 #include "ns3/internet-module.h"
 #include "ns3/energy-module.h"
@@ -233,9 +231,9 @@ main (int argc, char *argv[])
   /** Wifi PHY **/
   /***************************************************************************/
   NslWifiPhyHelper wifiPhy = NslWifiPhyHelper::Default ();
-  wifiPhy.Set ("NslRxGain", DoubleValue (-10));
-  wifiPhy.Set ("NslTxGain", DoubleValue (offset + Prss));
-  wifiPhy.Set ("NslCcaMode1Threshold", DoubleValue (0.0));
+  wifiPhy.Set ("RxGain", DoubleValue (-10));
+  wifiPhy.Set ("TxGain", DoubleValue (offset + Prss));
+  wifiPhy.Set ("CcaEdThreshold", DoubleValue (0.0));
   /***************************************************************************/
 
   /** wifi channel **/

@@ -32,7 +32,7 @@ def build(bld):
         
     module_test = bld.create_ns3_module_test_library('jamming')
     module_test.source = [
-        '',
+        '/test/jamming-components-test.cc',
         ]
         
     headers = bld(features='ns3header')
@@ -66,6 +66,6 @@ def build(bld):
         ]
 
     if (bld.env['ENABLE_EXAMPLES']):
-      bld.add_subdirs('examples')
+      bld.recurse('examples')
       
     

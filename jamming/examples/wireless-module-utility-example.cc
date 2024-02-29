@@ -241,7 +241,7 @@ main (int argc, char *argv[])
 
   /** MAC layer **/
   // Add a non-QoS upper MAC, and disable rate control
-  NqosWifiMacHelper wifiMac = NqosWifiMacHelper::Default ();
+  WifiMacHelper wifiMac;
   wifi.SetRemoteStationManager ("ns3::ConstantRateWifiManager", "DataMode",
                                 StringValue (phyMode), "ControlMode",
                                 StringValue (phyMode));

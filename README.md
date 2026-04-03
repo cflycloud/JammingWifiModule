@@ -44,7 +44,7 @@ In the ns-3 folder compile and build the code
 ``` 
 cd ns-3
 
-./waf configure --enable-tests --enable-examples
+./waf configure --disable-werror --enable-examples --enable-tests
 
 ./waf build
 ```
